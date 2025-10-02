@@ -22,6 +22,7 @@ import {
   BookOpen,
   AlertCircle,
   FileText,
+  User,
 } from "lucide-react";
 
 const App = () => {
@@ -122,65 +123,398 @@ const App = () => {
   const renderHome = () => (
     <div className="space-y-20">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Track Your Assets in{" "}
-              <span className="text-orange-400">Real-Time</span>
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-blue-100">
-              Secure, efficient, and reliable vehicle tracking for peace of mind
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={() => setActiveTab("enroll")}
-                className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors"
-              >
-                Enroll Now
-              </button>
-              <button
-                onClick={() => setActiveTab("register")}
-                className="bg-white text-blue-900 hover:bg-gray-100 px-8 py-4 rounded-lg text-lg font-semibold transition-colors"
-              >
-                Register Device
-              </button>
-              <button
-                onClick={() => setActiveTab("topup")}
-                className="border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4 rounded-lg text-lg font-semibold transition-colors"
-              >
-                Top Up Airtime
-              </button>
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 text-white py-24 overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Grid Pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                         linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+                backgroundSize: "50px 50px",
+              }}
+            ></div>
+          </div>
+
+          {/* Animated Gradient Orbs */}
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl animate-pulse"></div>
+          <div
+            className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse"
+            style={{ animationDelay: "1s" }}
+          ></div>
+
+          {/* Animated Map Pins */}
+          <div
+            className="absolute top-20 left-10 animate-bounce"
+            style={{ animationDelay: "0s", animationDuration: "3s" }}
+          >
+            <MapPin className="w-8 h-8 text-orange-400 opacity-30 fill-current" />
+          </div>
+          <div
+            className="absolute top-40 right-20 animate-bounce"
+            style={{ animationDelay: "1s", animationDuration: "3.5s" }}
+          >
+            <MapPin className="w-6 h-6 text-orange-400 opacity-20 fill-current" />
+          </div>
+          <div
+            className="absolute bottom-32 left-1/3 animate-bounce"
+            style={{ animationDelay: "2s", animationDuration: "4s" }}
+          >
+            <MapPin className="w-10 h-10 text-orange-400 opacity-25 fill-current" />
+          </div>
+
+          {/* Animated Route Lines */}
+          <svg
+            className="absolute inset-0 w-full h-full opacity-20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M 100 100 Q 300 50, 500 100 T 900 100"
+              stroke="url(#gradient1)"
+              strokeWidth="2"
+              fill="none"
+              strokeDasharray="10,5"
+            >
+              <animate
+                attributeName="stroke-dashoffset"
+                from="0"
+                to="30"
+                dur="2s"
+                repeatCount="indefinite"
+              />
+            </path>
+            <defs>
+              <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#f97316" stopOpacity="0.5" />
+                <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.5" />
+                <stop offset="100%" stopColor="#f97316" stopOpacity="0.5" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div className="text-center lg:text-left">
+              {/* Badge */}
+              <div className="inline-flex items-center px-4 py-2 bg-orange-500/20 backdrop-blur-sm border border-orange-500/30 rounded-full mb-6 animate-fade-in">
+                <div className="w-2 h-2 bg-orange-400 rounded-full mr-2 animate-pulse"></div>
+                <span className="text-sm font-semibold text-orange-300">
+                  Live Tracking Available
+                </span>
+              </div>
+
+              {/* Main Heading */}
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                Track Your Assets in{" "}
+                <span className="relative inline-block">
+                  <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+                    Real-Time
+                  </span>
+                  <span className="absolute bottom-2 left-0 w-full h-3 bg-orange-500/30 -z-10"></span>
+                </span>
+              </h1>
+
+              {/* Subheading */}
+              <p className="text-xl md:text-2xl mb-8 text-blue-100 leading-relaxed">
+                Secure, efficient, and reliable vehicle tracking for complete
+                peace of mind
+              </p>
+
+              {/* Feature Pills */}
+              <div className="flex flex-wrap gap-3 justify-center lg:justify-start mb-10">
+                <div className="flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+                  <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
+                  <span className="text-sm text-white">24/7 Monitoring</span>
+                </div>
+                <div className="flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+                  <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
+                  <span className="text-sm text-white">Instant Alerts</span>
+                </div>
+                <div className="flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+                  <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
+                  <span className="text-sm text-white">Easy Setup</span>
+                </div>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <button
+                  onClick={() => setActiveTab("enroll")}
+                  className="group relative bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/50 overflow-hidden"
+                >
+                  <span className="relative z-10 flex items-center justify-center">
+                    Enroll Now
+                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                  <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+                </button>
+
+                <button
+                  onClick={() => setActiveTab("register")}
+                  className="group bg-white text-blue-900 hover:bg-blue-50 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl flex items-center justify-center"
+                >
+                  <Smartphone className="w-5 h-5 mr-2" />
+                  Register Device
+                </button>
+
+                <button
+                  onClick={() => setActiveTab("topup")}
+                  className="group border-2 border-white/50 text-white hover:bg-white hover:text-blue-900 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 hover:scale-105 backdrop-blur-sm flex items-center justify-center"
+                >
+                  <CreditCard className="w-5 h-5 mr-2" />
+                  Top Up Airtime
+                </button>
+              </div>
+            </div>
+
+            {/* Right Content - Animated Map Illustration */}
+            <div className="relative hidden lg:block">
+              <div className="relative w-full h-[500px]">
+                {/* Main Map Card */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl border border-white/20 p-8 shadow-2xl">
+                  {/* Mock Map Interface */}
+                  <div className="relative w-full h-full bg-gradient-to-br from-blue-900/50 to-slate-900/50 rounded-2xl overflow-hidden">
+                    {/* Map Grid */}
+                    <div
+                      className="absolute inset-0 opacity-20"
+                      style={{
+                        backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                                 linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+                        backgroundSize: "30px 30px",
+                      }}
+                    ></div>
+
+                    {/* Animated Route Path */}
+                    <svg
+                      className="absolute inset-0 w-full h-full"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M 50 400 Q 150 300, 250 350 T 450 300"
+                        stroke="#f97316"
+                        strokeWidth="3"
+                        fill="none"
+                        strokeDasharray="1000"
+                        strokeDashoffset="1000"
+                        opacity="0.8"
+                      >
+                        <animate
+                          attributeName="stroke-dashoffset"
+                          from="1000"
+                          to="0"
+                          dur="3s"
+                          repeatCount="indefinite"
+                        />
+                      </path>
+                    </svg>
+
+                    {/* Animated Vehicle Pins */}
+                    <div className="absolute top-1/4 left-1/4 animate-pulse">
+                      <div className="relative">
+                        <div className="absolute inset-0 bg-orange-500 rounded-full blur-xl opacity-50 animate-ping"></div>
+                        <div className="relative bg-gradient-to-br from-orange-400 to-orange-600 p-3 rounded-full shadow-lg">
+                          <Car className="w-6 h-6 text-white" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      className="absolute top-1/2 right-1/3 animate-pulse"
+                      style={{ animationDelay: "1s" }}
+                    >
+                      <div className="relative">
+                        <div className="absolute inset-0 bg-blue-500 rounded-full blur-xl opacity-50 animate-ping"></div>
+                        <div className="relative bg-gradient-to-br from-blue-400 to-blue-600 p-3 rounded-full shadow-lg">
+                          <MapPin className="w-6 h-6 text-white fill-current" />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Stats Overlay Cards */}
+                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-xl animate-fade-in">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <div>
+                          <p className="text-xs text-gray-600">
+                            Active Devices
+                          </p>
+                          <p className="text-lg font-bold text-blue-900">
+                            1,247
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-xl animate-fade-in"
+                      style={{ animationDelay: "0.5s" }}
+                    >
+                      <div className="flex items-center space-x-3">
+                        <Shield className="w-6 h-6 text-orange-500" />
+                        <div>
+                          <p className="text-xs text-gray-600">
+                            Security Status
+                          </p>
+                          <p className="text-sm font-bold text-green-600">
+                            All Systems Protected
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating Elements */}
+                <div className="absolute -top-6 -left-6 w-24 h-24 bg-orange-500/20 rounded-full blur-2xl animate-pulse"></div>
+                <div
+                  className="absolute -bottom-6 -right-6 w-32 h-32 bg-blue-500/20 rounded-full blur-2xl animate-pulse"
+                  style={{ animationDelay: "1s" }}
+                ></div>
+              </div>
             </div>
           </div>
+
+          {/* Bottom Stats Bar */}
+          <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              {
+                icon: <Shield className="w-6 h-6" />,
+                value: "99.9%",
+                label: "Uptime",
+              },
+              {
+                icon: <MapPin className="w-6 h-6" />,
+                value: "15K+",
+                label: "Tracked Devices",
+              },
+              {
+                icon: <Bell className="w-6 h-6" />,
+                value: "24/7",
+                label: "Live Support",
+              },
+              {
+                icon: <Star className="w-6 h-6 fill-current" />,
+                value: "4.9/5",
+                label: "User Rating",
+              },
+            ].map((stat, index) => (
+              <div
+                key={index}
+                className="text-center p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105"
+              >
+                <div className="text-orange-400 mb-2 flex justify-center">
+                  {stat.icon}
+                </div>
+                <div className="text-2xl font-bold text-white mb-1">
+                  {stat.value}
+                </div>
+                <div className="text-sm text-blue-200">{stat.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
+
+        {/* Custom CSS for animations */}
+        <style jsx>{`
+          @keyframes fade-in {
+            from {
+              opacity: 0;
+              transform: translateY(10px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          .animate-fade-in {
+            animation: fade-in 1s ease-out;
+          }
+        `}</style>
       </section>
 
       {/* Features Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">
+          <div className="inline-flex items-center justify-center px-4 py-2 bg-blue-100 rounded-full mb-4">
+            <Shield className="w-4 h-4 text-blue-600 mr-2" />
+            <span className="text-sm font-semibold text-blue-700 uppercase tracking-wider">
+              Features
+            </span>
+          </div>
+          <h2 className="text-3xl md:text-5xl font-bold text-blue-900 mb-4">
             Why Choose Our Platform?
           </h2>
-          <p className="text-xl text-gray-600">
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Advanced features designed to keep your assets safe and secure
           </p>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((feature, index) => (
             <div
               key={index}
-              className="text-center p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+              className="group relative bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-orange-200 hover:-translate-y-2 overflow-hidden"
             >
-              <div className="text-orange-500 mb-4 flex justify-center">
-                {feature.icon}
+              {/* Background Gradient on Hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-blue-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+              {/* Content */}
+              <div className="relative z-10">
+                {/* Icon Container */}
+                <div className="w-16 h-16 bg-gradient-to-br from-orange-100 to-orange-50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg group-hover:shadow-orange-200">
+                  <div className="text-orange-500 group-hover:text-orange-600 transition-colors">
+                    {feature.icon}
+                  </div>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-xl font-bold text-blue-900 mb-3 group-hover:text-orange-600 transition-colors">
+                  {feature.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  {feature.description}
+                </p>
+
+                {/* Arrow Icon - Appears on Hover */}
+                <div className="mt-4 flex items-center text-orange-500 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-2 transition-all duration-300">
+                  <span className="text-sm font-semibold mr-2">Learn more</span>
+                  <ArrowRight className="w-4 h-4" />
+                </div>
               </div>
-              <h3 className="text-xl font-semibold text-blue-900 mb-2">
-                {feature.title}
-              </h3>
-              <p className="text-gray-600">{feature.description}</p>
+
+              {/* Decorative Corner Element */}
+              <div className="absolute -top-8 -right-8 w-24 h-24 bg-orange-500/5 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
             </div>
           ))}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="mt-16 text-center">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-gradient-to-r from-blue-900 to-blue-800 px-8 py-6 rounded-2xl shadow-xl">
+            <div className="text-left">
+              <p className="text-white font-semibold text-lg mb-1">
+                Ready to get started?
+              </p>
+              <p className="text-blue-200 text-sm">
+                Start tracking your assets today
+              </p>
+            </div>
+            <button
+              onClick={() => setActiveTab("enroll")}
+              className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center whitespace-nowrap"
+            >
+              Enroll Now
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </button>
+          </div>
         </div>
       </section>
 
@@ -315,157 +649,455 @@ const App = () => {
   );
 
   const renderEnrollment = () => (
-    <div className="max-w-2xl mx-auto py-16 px-4">
-      <div className="bg-white rounded-lg shadow-xl p-8">
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold text-blue-900 mb-4">
-            Create Your Account
-          </h2>
-          <div className="flex items-center space-x-4 mb-6">
-            {[1, 2, 3, 4].map((step) => (
-              <div key={step} className="flex items-center">
-                <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                    enrollmentStep >= step
-                      ? "bg-orange-500 text-white"
-                      : "bg-gray-300 text-gray-600"
-                  }`}
-                >
-                  {enrollmentStep > step ? (
-                    <CheckCircle className="w-5 h-5" />
-                  ) : (
-                    step
-                  )}
-                </div>
-                {step < 4 && (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50 py-16 px-4">
+      <div className="max-w-3xl mx-auto">
+        {/* Progress Header */}
+        <div className="mb-12">
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center px-4 py-2 bg-orange-100 rounded-full mb-4">
+              <Shield className="w-4 h-4 text-orange-600 mr-2" />
+              <span className="text-sm font-semibold text-orange-700 uppercase tracking-wider">
+                Account Setup
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-2">
+              Create Your Account
+            </h2>
+            <p className="text-gray-600">
+              Complete the steps below to get started
+            </p>
+          </div>
+
+          {/* Step Indicator */}
+          <div className="relative">
+            {/* Progress Bar Background */}
+            <div className="absolute top-5 left-0 right-0 h-1 bg-gray-200 rounded-full"></div>
+            {/* Active Progress Bar */}
+            <div
+              className="absolute top-5 left-0 h-1 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full transition-all duration-500 ease-out"
+              style={{ width: `${((enrollmentStep - 1) / 3) * 100}%` }}
+            ></div>
+
+            {/* Steps */}
+            <div className="relative flex justify-between">
+              {[
+                {
+                  num: 1,
+                  label: "Account Info",
+                  icon: <User className="w-5 h-5" />,
+                },
+                {
+                  num: 2,
+                  label: "Verification",
+                  icon: <Shield className="w-5 h-5" />,
+                },
+                {
+                  num: 3,
+                  label: "Profile",
+                  icon: <FileText className="w-5 h-5" />,
+                },
+                {
+                  num: 4,
+                  label: "Complete",
+                  icon: <CheckCircle className="w-5 h-5" />,
+                },
+              ].map((step) => (
+                <div key={step.num} className="flex flex-col items-center">
+                  {/* Step Circle */}
                   <div
-                    className={`w-12 h-1 ${
-                      enrollmentStep > step ? "bg-orange-500" : "bg-gray-300"
+                    className={`relative w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
+                      enrollmentStep >= step.num
+                        ? "bg-gradient-to-br from-orange-500 to-orange-600 shadow-lg shadow-orange-500/50 scale-110"
+                        : "bg-white border-2 border-gray-300"
                     }`}
-                  />
-                )}
-              </div>
-            ))}
+                  >
+                    {enrollmentStep > step.num ? (
+                      <CheckCircle className="w-6 h-6 text-white animate-scale-in" />
+                    ) : (
+                      <span
+                        className={`font-bold ${
+                          enrollmentStep >= step.num
+                            ? "text-white"
+                            : "text-gray-500"
+                        }`}
+                      >
+                        {enrollmentStep === step.num ? step.icon : step.num}
+                      </span>
+                    )}
+
+                    {/* Pulse Animation for Active Step */}
+                    {enrollmentStep === step.num && (
+                      <span className="absolute inset-0 rounded-full bg-orange-500 animate-ping opacity-75"></span>
+                    )}
+                  </div>
+
+                  {/* Step Label */}
+                  <span
+                    className={`mt-3 text-xs md:text-sm font-semibold transition-colors ${
+                      enrollmentStep >= step.num
+                        ? "text-orange-600"
+                        : "text-gray-500"
+                    }`}
+                  >
+                    {step.label}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        {enrollmentStep === 1 && (
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-blue-900">
-              Account Information
-            </h3>
-            <div className="grid md:grid-cols-2 gap-4">
-              <input
-                type="text"
-                placeholder="First Name"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-              />
-              <input
-                type="text"
-                placeholder="Last Name"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-              />
-            </div>
-            <input
-              type="email"
-              placeholder="Email Address"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-            />
-            <input
-              type="tel"
-              placeholder="Phone Number"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-            />
-            <button
-              onClick={() => setEnrollmentStep(2)}
-              className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-semibold transition-colors"
-            >
-              Continue
-            </button>
-          </div>
-        )}
+        {/* Form Card */}
+        <div className="bg-white rounded-2xl shadow-2xl p-6 md:p-10 border border-gray-100">
+          {enrollmentStep === 1 && (
+            <div className="space-y-6 animate-fade-in">
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                  <User className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-2xl font-bold text-blue-900">
+                  Account Information
+                </h3>
+              </div>
 
-        {enrollmentStep === 2 && (
-          <div className="text-center space-y-4">
-            <h3 className="text-xl font-semibold text-blue-900">
-              Verify Your Account
-            </h3>
-            <p className="text-gray-600">
-              We've sent a verification code to your email and phone
-            </p>
-            <div className="flex justify-center space-x-2">
-              {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="group">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    First Name <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="John"
+                    id="firstName"
+                    required
+                    className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all outline-none group-hover:border-gray-400"
+                  />
+                </div>
+                <div className="group">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Last Name <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Doe"
+                    id="lastName"
+                    required
+                    className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all outline-none group-hover:border-gray-400"
+                  />
+                </div>
+              </div>
+
+              <div className="group">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Email Address <span className="text-red-500">*</span>
+                </label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <input
+                    type="email"
+                    placeholder="john.doe@example.com"
+                    id="email"
+                    required
+                    className="w-full p-3 pl-11 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all outline-none group-hover:border-gray-400"
+                  />
+                </div>
+              </div>
+
+              <div className="group">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Phone Number <span className="text-red-500">*</span>
+                </label>
+                <div className="relative">
+                  <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <input
+                    type="tel"
+                    placeholder="+263 77 123 4567"
+                    id="phone"
+                    required
+                    className="w-full p-3 pl-11 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all outline-none group-hover:border-gray-400"
+                  />
+                </div>
+              </div>
+
+              <div className="group">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Password <span className="text-red-500">*</span>
+                </label>
+                <div className="relative">
+                  <Shield className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <input
+                    type="password"
+                    placeholder="••••••••"
+                    id="password"
+                    required
+                    className="w-full p-3 pl-11 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all outline-none group-hover:border-gray-400"
+                  />
+                </div>
+                <p className="mt-2 text-xs text-gray-500">
+                  Minimum 8 characters with letters and numbers
+                </p>
+              </div>
+
+              <div className="flex gap-4 pt-4">
+                <button
+                  onClick={() => setActiveTab("home")}
+                  className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center group"
+                >
+                  <ArrowRight className="w-5 h-5 mr-2 rotate-180" />
+                  Cancel
+                </button>
+                <button
+                  onClick={() => {
+                    const firstName =
+                      document.getElementById("firstName").value;
+                    const lastName = document.getElementById("lastName").value;
+                    const email = document.getElementById("email").value;
+                    const phone = document.getElementById("phone").value;
+                    const password = document.getElementById("password").value;
+
+                    if (
+                      firstName &&
+                      lastName &&
+                      email &&
+                      phone &&
+                      password &&
+                      password.length >= 8
+                    ) {
+                      setEnrollmentStep(2);
+                    } else {
+                      alert(
+                        "Please fill in all required fields. Password must be at least 8 characters."
+                      );
+                    }
+                  }}
+                  className="flex-1 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-orange-500/50 flex items-center justify-center group"
+                >
+                  Next Step
+                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+            </div>
+          )}
+
+          {enrollmentStep === 2 && (
+            <div className="text-center space-y-6 animate-fade-in">
+              <div className="w-16 h-16 bg-gradient-to-br from-orange-100 to-orange-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Shield className="w-8 h-8 text-orange-600" />
+              </div>
+
+              <h3 className="text-2xl font-bold text-blue-900">
+                Verify Your Account
+              </h3>
+              <p className="text-gray-600">
+                We've sent a 6-digit verification code to your email and phone
+              </p>
+
+              <div className="flex justify-center space-x-2 md:space-x-3">
+                {[1, 2, 3, 4, 5, 6].map((i) => (
+                  <input
+                    key={i}
+                    type="text"
+                    maxLength="1"
+                    id={`code${i}`}
+                    className="w-12 h-14 md:w-14 md:h-16 text-center text-xl font-bold border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all outline-none hover:border-gray-400"
+                    onInput={(e) => {
+                      if (e.target.value && i < 6) {
+                        document.getElementById(`code${i + 1}`)?.focus();
+                      }
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Backspace" && !e.target.value && i > 1) {
+                        document.getElementById(`code${i - 1}`)?.focus();
+                      }
+                    }}
+                  />
+                ))}
+              </div>
+
+              <button className="text-sm text-orange-600 hover:text-orange-700 font-semibold transition-colors">
+                Resend Code
+              </button>
+
+              <div className="flex gap-4 pt-4">
+                <button
+                  onClick={() => setEnrollmentStep(1)}
+                  className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center group"
+                >
+                  <ArrowRight className="w-5 h-5 mr-2 rotate-180 group-hover:-translate-x-1 transition-transform" />
+                  Back
+                </button>
+                <button
+                  onClick={() => {
+                    const codes = [1, 2, 3, 4, 5, 6].map(
+                      (i) => document.getElementById(`code${i}`).value
+                    );
+                    const allFilled = codes.every((code) => code.length === 1);
+
+                    if (allFilled) {
+                      setEnrollmentStep(3);
+                    } else {
+                      alert(
+                        "Please enter the complete 6-digit verification code."
+                      );
+                    }
+                  }}
+                  className="flex-1 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-orange-500/50 flex items-center justify-center group"
+                >
+                  Verify & Continue
+                  <CheckCircle className="w-5 h-5 ml-2 group-hover:scale-110 transition-transform" />
+                </button>
+              </div>
+            </div>
+          )}
+
+          {enrollmentStep === 3 && (
+            <div className="space-y-6 animate-fade-in">
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                  <FileText className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-2xl font-bold text-blue-900">
+                  Complete Your Profile
+                </h3>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Account Type <span className="text-red-500">*</span>
+                </label>
+                <select
+                  id="accountType"
+                  className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all outline-none hover:border-gray-400"
+                >
+                  <option value="">Select account type</option>
+                  <option value="individual">Individual</option>
+                  <option value="business">Business</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Organization Name (Optional)
+                </label>
                 <input
-                  key={i}
                   type="text"
-                  maxLength="1"
-                  className="w-12 h-12 text-center border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                  placeholder="Your Company Name"
+                  id="orgName"
+                  className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all outline-none hover:border-gray-400"
                 />
-              ))}
-            </div>
-            <button
-              onClick={() => setEnrollmentStep(3)}
-              className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-semibold transition-colors"
-            >
-              Verify
-            </button>
-          </div>
-        )}
+              </div>
 
-        {enrollmentStep === 3 && (
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-blue-900">
-              Complete Your Profile
-            </h3>
-            <div className="space-y-4">
-              <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
-                <option>Account Type</option>
-                <option>Individual</option>
-                <option>Business</option>
-              </select>
-              <input
-                type="text"
-                placeholder="Organization Name (Optional)"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-              />
-              <textarea
-                placeholder="Tell us about your tracking needs"
-                rows="3"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-              />
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Tell us about your tracking needs{" "}
+                  <span className="text-red-500">*</span>
+                </label>
+                <textarea
+                  placeholder="e.g., I need to track 5 delivery vehicles across Harare..."
+                  rows="4"
+                  id="trackingNeeds"
+                  className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all outline-none hover:border-gray-400 resize-none"
+                />
+              </div>
+
+              <div className="flex gap-4 pt-4">
+                <button
+                  onClick={() => setEnrollmentStep(2)}
+                  className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center group"
+                >
+                  <ArrowRight className="w-5 h-5 mr-2 rotate-180 group-hover:-translate-x-1 transition-transform" />
+                  Back
+                </button>
+                <button
+                  onClick={() => {
+                    const accountType =
+                      document.getElementById("accountType").value;
+                    const trackingNeeds =
+                      document.getElementById("trackingNeeds").value;
+
+                    if (accountType && trackingNeeds) {
+                      setEnrollmentStep(4);
+                    } else {
+                      alert(
+                        "Please select an account type and describe your tracking needs."
+                      );
+                    }
+                  }}
+                  className="flex-1 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-orange-500/50 flex items-center justify-center group"
+                >
+                  Complete Setup
+                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+            </div>
+          )}
+
+          {enrollmentStep === 4 && (
+            <div className="text-center space-y-6 animate-fade-in py-8">
+              <div className="relative inline-block">
+                <div className="absolute inset-0 bg-green-500 rounded-full blur-xl opacity-30 animate-pulse"></div>
+                <CheckCircle className="relative w-20 h-20 text-green-500 mx-auto animate-scale-in" />
+              </div>
+
+              <h3 className="text-3xl font-bold text-blue-900">
+                Welcome Aboard!
+              </h3>
+              <p className="text-gray-600 text-lg">
+                Your account has been created successfully
+              </p>
+
+              <div className="bg-green-50 border border-green-200 rounded-xl p-6 space-y-2">
+                <div className="flex items-center justify-center space-x-2 text-green-700">
+                  <CheckCircle className="w-5 h-5" />
+                  <span className="font-semibold">Account activated</span>
+                </div>
+                <p className="text-sm text-green-600">
+                  You can now register your tracking devices
+                </p>
+              </div>
+
               <button
-                onClick={() => setEnrollmentStep(4)}
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-semibold transition-colors"
+                onClick={() => setActiveTab("register")}
+                className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-orange-500/50 flex items-center justify-center group"
               >
-                Complete Setup
+                Register Your First Device
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
-          </div>
-        )}
-
-        {enrollmentStep === 4 && (
-          <div className="text-center space-y-4">
-            <CheckCircle className="w-16 h-16 text-green-500 mx-auto" />
-            <h3 className="text-xl font-semibold text-blue-900">
-              Welcome Aboard!
-            </h3>
-            <p className="text-gray-600">
-              Your account has been created successfully
-            </p>
-            <button
-              onClick={() => setActiveTab("register")}
-              className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-semibold transition-colors"
-            >
-              Register Your First Device
-            </button>
-          </div>
-        )}
+          )}
+        </div>
       </div>
+
+      {/* Custom Animations */}
+      <style jsx>{`
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes scale-in {
+          from {
+            transform: scale(0);
+          }
+          to {
+            transform: scale(1);
+          }
+        }
+
+        .animate-fade-in {
+          animation: fade-in 0.5s ease-out;
+        }
+
+        .animate-scale-in {
+          animation: scale-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+      `}</style>
     </div>
   );
 
@@ -1246,37 +1878,59 @@ const App = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
-      <nav className="bg-white shadow-lg sticky top-0 z-50">
+      {/* Navigation */}
+      <nav className="bg-white/95 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <div className="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center">
-                  <Car className="w-6 h-6 text-white" />
+          <div className="flex justify-between items-center h-20">
+            {/* Logo Section */}
+            <div className="flex items-center group cursor-pointer">
+              <div className="relative">
+                <div className="absolute inset-0 bg-orange-500 rounded-xl blur-md opacity-50 group-hover:opacity-75 transition-opacity"></div>
+                <div className="relative w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <Car className="w-7 h-7 text-white" />
                 </div>
               </div>
-              <div className="ml-3">
-                <h1 className="text-xl font-bold text-blue-900">ThisTracker</h1>
-                <p className="text-xs text-gray-600">Asset Tracking Platform</p>
+              <div className="ml-4">
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-900 to-blue-700 bg-clip-text text-transparent">
+                  ThisTracker
+                </h1>
+                <p className="text-xs text-gray-500 font-medium">
+                  Asset Tracking Platform
+                </p>
               </div>
             </div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
+              <div className="flex items-center space-x-2">
                 {navigation.map((item) => (
                   <button
                     key={item.id}
                     onClick={() => setActiveTab(item.id)}
-                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    className={`relative px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 ${
                       activeTab === item.id
-                        ? "bg-orange-500 text-white"
-                        : "text-blue-900 hover:bg-blue-100"
+                        ? "text-white"
+                        : "text-blue-900 hover:text-orange-600 hover:bg-orange-50"
                     }`}
                   >
-                    {item.name}
+                    {activeTab === item.id && (
+                      <span className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg shadow-lg"></span>
+                    )}
+                    <span className="relative z-10">{item.name}</span>
+                    {activeTab === item.id && (
+                      <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1/2 h-0.5 bg-white"></span>
+                    )}
                   </button>
                 ))}
+
+                {/* CTA Button */}
+                <button
+                  onClick={() => setActiveTab("enroll")}
+                  className="ml-4 group relative bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-orange-500/50 flex items-center"
+                >
+                  <Plus className="w-4 h-4 mr-1 group-hover:rotate-90 transition-transform duration-300" />
+                  Get Started
+                </button>
               </div>
             </div>
 
@@ -1284,41 +1938,96 @@ const App = () => {
             <div className="md:hidden">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="text-blue-900 hover:text-orange-500"
+                className="relative w-10 h-10 text-blue-900 hover:text-orange-500 focus:outline-none transition-colors duration-300"
               >
-                {mobileMenuOpen ? (
-                  <X className="w-6 h-6" />
-                ) : (
-                  <Menu className="w-6 h-6" />
-                )}
+                <span className="sr-only">Open menu</span>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div
+                    className={`transition-all duration-300 ${
+                      mobileMenuOpen
+                        ? "rotate-180 opacity-0"
+                        : "rotate-0 opacity-100"
+                    }`}
+                  >
+                    <Menu className="w-6 h-6" />
+                  </div>
+                  <div
+                    className={`absolute transition-all duration-300 ${
+                      mobileMenuOpen
+                        ? "rotate-0 opacity-100"
+                        : "-rotate-180 opacity-0"
+                    }`}
+                  >
+                    <X className="w-6 h-6" />
+                  </div>
+                </div>
               </button>
             </div>
           </div>
 
           {/* Mobile Navigation */}
-          {mobileMenuOpen && (
-            <div className="md:hidden">
-              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
-                {navigation.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => {
-                      setActiveTab(item.id);
-                      setMobileMenuOpen(false);
-                    }}
-                    className={`block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors ${
-                      activeTab === item.id
-                        ? "bg-orange-500 text-white"
-                        : "text-blue-900 hover:bg-blue-100"
-                    }`}
-                  >
+          <div
+            className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+              mobileMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+            }`}
+          >
+            <div className="px-2 pt-2 pb-4 space-y-2 bg-gradient-to-br from-gray-50 to-blue-50 rounded-b-2xl border-t border-gray-100">
+              {navigation.map((item, index) => (
+                <button
+                  key={item.id}
+                  onClick={() => {
+                    setActiveTab(item.id);
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`block px-4 py-3 rounded-xl text-base font-semibold w-full text-left transition-all duration-300 transform ${
+                    activeTab === item.id
+                      ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-lg scale-105"
+                      : "text-blue-900 hover:bg-white hover:shadow-md hover:scale-102"
+                  }`}
+                  style={{
+                    animationDelay: `${index * 50}ms`,
+                    animation: mobileMenuOpen
+                      ? "slideIn 0.3s ease-out forwards"
+                      : "none",
+                  }}
+                >
+                  <span className="flex items-center justify-between">
                     {item.name}
-                  </button>
-                ))}
-              </div>
+                    {activeTab === item.id && (
+                      <CheckCircle className="w-5 h-5" />
+                    )}
+                  </span>
+                </button>
+              ))}
+
+              {/* Mobile CTA */}
+              <button
+                onClick={() => {
+                  setActiveTab("enroll");
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full mt-4 bg-gradient-to-r from-blue-900 to-blue-800 text-white px-4 py-3 rounded-xl text-base font-semibold transition-all duration-300 hover:shadow-lg flex items-center justify-center"
+              >
+                <Plus className="w-5 h-5 mr-2" />
+                Get Started Free
+              </button>
             </div>
-          )}
+          </div>
         </div>
+
+        {/* Custom Animation */}
+        <style jsx>{`
+          @keyframes slideIn {
+            from {
+              opacity: 0;
+              transform: translateX(-20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
+        `}</style>
       </nav>
 
       {/* Main Content */}
